@@ -1,0 +1,15 @@
+.running {
+    color: green;
+}
+.stopped {
+    color: red;
+}
+.console {
+    background-color: black;
+    color: green;
+    overflow-y: scroll;
+    height: 200px;
+}
+.starting {
+    color: orange;
+}

@@ -1,0 +1,25 @@
+<p-card header="Logstash output">
+    <div class="console">
+        <div *ngFor="let line of buffer">{{line}}</div>
+    </div>
+    <button *ngIf="running && running.state != 'KILLING'" pButton type="button" label="{{running && running.state == 'RUNNING' ? 'Restart' :'Start'}}" (click)="restart()" class="ui-button-warn"></button>
+    <button *ngIf="running && running.state != 'KILLING' && running.state != 'STOPPED'" pButton type="button" label="Stop" (click)="stop()" class="ui-button-error"></button>
+</p-card>
+<p-card header="Logstash instance" *ngIf="running">
+    <div *ngIf="running.state == 'RUNNING'" class="running">
+        <i class="pi pi-check" style="font-size: 3em"></i>
+        RUNNING
+    </div>
+    <div *ngIf="running.state == 'STOPPED'" class="stopped">
+        <i class="pi pi-times" style="font-size: 3em"></i>
+        STOPPED
+    </div>
+    <div *ngIf="running.state == 'STARTING'" class="starting">
+        <i class="pi pi-spin pi-spinner" style="font-size: 3em"></i>
+        STARTING
+    </div>
+    <div *ngIf="running.state == 'KILLING'" class="stopped">
+        <i class="pi pi-spin pi-spinner" style="font-size: 3em"></i> 
+        STOPPING
+       </div>
+</p-card>
