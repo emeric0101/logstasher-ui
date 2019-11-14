@@ -1,15 +1,18 @@
-.running {
+.RUNNING {
     color: green;
 }
-.stopped {
+.STOPPED {
+    color: gray;
+}
+
+.STARTING {
+    color: orange;
+}
+
+.ERROR {
     color: red;
 }
-.console {
-    background-color: black;
+
+.done {
     color: green;
-    overflow-y: scroll;
-    height: 200px;
-}
-.starting {
-    color: orange;
 }

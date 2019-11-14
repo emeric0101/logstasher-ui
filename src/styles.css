@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+.console {
+    background-color: black;
+    color: green;
+    overflow-y: scroll;
+    height: 200px;
+}
+.console-msg {
+    border-radius: 5px;
+    padding: 2px;
+    color: black;
+}
+.console-error {
+    background-color: red;
+}
+.console-info {
+    background-color: lightgrey;
+}
+.console-warn {
+    background-color: orange;
+}

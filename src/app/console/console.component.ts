@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TerminalService } from 'primeng/components/terminal/terminalservice';
 import { ConsoleService } from './console.service';
 import { Running } from './running.class';
+import { WebsocketService } from '../services/websocket.service';
 
 @Component({
   selector: 'app-console',
@@ -15,20 +16,19 @@ export class ConsoleComponent implements OnInit, OnDestroy {
   timer;
   constructor(
     private terminalService: TerminalService,
-    private consoleService: ConsoleService
+    private consoleService: ConsoleService,
+    private webSocketService: WebsocketService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.running = await this.consoleService.getRunning();
 
-    this.timer = setInterval(async () => {
-      try {
-        this.running = await this.consoleService.getRunning();
-        this.refresh();
-      }
-      catch (e) {
-        console.log(e)
-      }
-    }, 800);
+    await this.webSocketService.connect();
+    this.webSocketService.subscribe('/state', (r) => {
+      this.consoleService.current = r;
+      this.running = r;
+      this.buffer = this.consoleService.getBuffer();
+    })
   }
 
   async stop() {
@@ -39,11 +39,23 @@ export class ConsoleComponent implements OnInit, OnDestroy {
     clearInterval(this.timer);
   }
 
-  async refresh() {
-    this.buffer = await this.consoleService.refresh();
-  }
+  
   async restart() {
     await this.consoleService.restartLogstash();
   }
 
+  restartBatches() {
+    this.consoleService.restartBatches();
+  }
+
+  /**
+   * Remove all info msg not needed here
+   * @param buffer 
+   */
+  filterBuffer(buffer: string[]) {
+    if (!buffer) {
+      return '';
+    }
+    return buffer.filter(e => !e.includes("[INFO ]"));
+  }
 }

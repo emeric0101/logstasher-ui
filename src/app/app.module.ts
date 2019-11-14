@@ -20,6 +20,13 @@ import { ConsoleComponent } from './console/console.component';
 import {DialogModule} from 'primeng/dialog';
 import { EditComponent } from './pipelines/edit/edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BatchesComponent } from './batches/batches.component';
+import { BatchesService } from './batches/batches.service';
+import { BatchesEditComponent } from './batches/batches-edit/batches-edit.component';
+import { BatchesCreateComponent } from './batches/batches-create/batches-create.component';
+import { CurrentQueueComponent } from './console/current-queue/current-queue.component';
+import { consoleSyntaxePipe } from './pipes/console-syntax.pipe';
+import { WebsocketService } from './services/websocket.service';
 
 @NgModule({
    declarations: [
@@ -27,7 +34,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       PipelinesComponent,
       CreateComponent,
       ConsoleComponent,
-      EditComponent
+      EditComponent,
+      BatchesComponent,
+      BatchesCreateComponent,
+      BatchesEditComponent,
+      CurrentQueueComponent,
+      consoleSyntaxePipe
    ],
    imports: [
       BrowserModule,
@@ -45,7 +57,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
    ],
    providers: [
       HttpService,
-      PipelineService
+      PipelineService,
+      BatchesService,
+      WebsocketService
    ],
    bootstrap: [
       AppComponent
