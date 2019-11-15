@@ -13,6 +13,8 @@ export class BatchesComponent implements OnInit {
   editBatch: Batch = null;
 
   displayEdit = false;
+  displayNew = false;
+  displayRestEdit = false;
 
   errorMsg = '';
   constructor(
@@ -23,6 +25,10 @@ export class BatchesComponent implements OnInit {
   edit(va) {
     this.editBatch = va;
     this.displayEdit = true;
+  }
+  editRest(va) {
+    this.editBatch = va;
+    this.displayRestEdit = true;
   }
 
   async ngOnInit() {
@@ -52,5 +58,9 @@ export class BatchesComponent implements OnInit {
 
   isLogstashRunning() {
     return this.consoleService.getIsBusy();
+  }
+
+  onNewBatch() {
+    this.displayNew = true;
   }
 }

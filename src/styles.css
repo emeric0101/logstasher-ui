@@ -19,3 +19,7 @@
 .console-warn {
     background-color: orange;
 }
+
+.ui-button {
+    margin: 5px !important;
+}

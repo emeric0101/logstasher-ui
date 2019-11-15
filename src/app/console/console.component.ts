@@ -14,17 +14,34 @@ export class ConsoleComponent implements OnInit, OnDestroy {
   buffer: string[];
   running: Running;
   timer;
+
+  socketError = false;
+
   constructor(
     private terminalService: TerminalService,
     private consoleService: ConsoleService,
     private webSocketService: WebsocketService
   ) { }
 
+  async reconnect() {
+    this.webSocketService.reconnect();
+    this.socketError = false;
+  }
+
   async ngOnInit() {
     this.running = await this.consoleService.getRunning();
 
+    this.webSocketService.socketClose.subscribe(() => {
+      this.socketError = true;
+    })
+
+
+
     await this.webSocketService.connect();
+
+
     this.webSocketService.subscribe('/state', (r) => {
+      this.socketError = false;
       this.consoleService.current = r;
       this.running = r;
       this.buffer = this.consoleService.getBuffer();

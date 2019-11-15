@@ -4,11 +4,18 @@
     <div class="console">
         <div *ngFor="let line of filterBuffer(buffer)" [innerHTML]="line | consoleSyntaxe"></div>
     </div>
-    <button *ngIf="running && running.state != 'KILLING'" [disabled]="true" pButton type="button" label="{{running && running.state == 'RUNNING' ? 'Restart' :'Start pipeline'}}" (click)="restart()" class="ui-button-warn"></button>
-    <button *ngIf="running && running.state != 'KILLING'" pButton type="button" label="{{running && running.state == 'RUNNING' ? 'Restart batches' :'Start batches'}}" (click)="restartBatches()" class="ui-button-warn"></button>
-    <button *ngIf="running && running.state != 'KILLING' && running.state != 'STOPPED'" pButton type="button" label="Stop" (click)="stop()" class="ui-button-error"></button>
+    <div *ngIf="!socketError">
+            <button *ngIf="running && running.state != 'KILLING'" [disabled]="true" pButton type="button" label="{{running && running.state == 'RUNNING' ? 'Restart' :'Start pipeline'}}" (click)="restart()" class="ui-button-warn"></button>
+            <button *ngIf="running && running.state != 'KILLING'" pButton type="button" label="{{running && running.state == 'RUNNING' ? 'Restart batches' :'Start batches'}}" (click)="restartBatches()" class="ui-button-warn"></button>
+            <button *ngIf="running && running.state != 'KILLING' && running.state != 'STOPPED'" pButton type="button" label="Stop" (click)="stop()" class="ui-button-error"></button>        
+    </div>
+    <br/>
+    <div *ngIf="socketError" class="console-error console-msg">
+        Server connection error
+        <button pButton label="Reconnect" (click)="reconnect()"></button>
+    </div>
 </p-card>
-<p-card header="Logstash instance" *ngIf="running">
+<p-card header="Logstash instance" *ngIf="running && !socketError">
     <div [attr.class]="running.state">
         {{running.state}}
     </div>

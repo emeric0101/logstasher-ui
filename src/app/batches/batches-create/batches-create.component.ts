@@ -16,7 +16,11 @@ export class BatchesCreateComponent implements OnInit {
       content: "",
       activated: false,
       lastTime: null,
-      order: 1
+      order: 1,
+      startHour: 23,
+      startMinute: 0,
+      timeout: 60,
+      entyRequests: []
   };
 
   constructor(

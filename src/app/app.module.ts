@@ -27,6 +27,8 @@ import { BatchesCreateComponent } from './batches/batches-create/batches-create.
 import { CurrentQueueComponent } from './console/current-queue/current-queue.component';
 import { consoleSyntaxePipe } from './pipes/console-syntax.pipe';
 import { WebsocketService } from './services/websocket.service';
+import { BatchArchiveComponent } from './batch-archive/batch-archive.component';
+import { EditRestRequestComponent } from './batches/edit-rest-request/edit-rest-request.component';
 
 @NgModule({
    declarations: [
@@ -39,7 +41,9 @@ import { WebsocketService } from './services/websocket.service';
       BatchesCreateComponent,
       BatchesEditComponent,
       CurrentQueueComponent,
-      consoleSyntaxePipe
+      consoleSyntaxePipe,
+      BatchArchiveComponent,
+      EditRestRequestComponent
    ],
    imports: [
       BrowserModule,
