@@ -14,7 +14,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-item>
       <tr>
-        <td>{{item.batch.id}}</td>
+        <td *ngIf="item.batch">{{item.batch.id}}</td>
         <td>{{item.startTime | date: 'short'}}</td>
         <td>{{item.endTime | date: 'short'}}</td>
         <td>{{(computeTotal(item))}} min</td>

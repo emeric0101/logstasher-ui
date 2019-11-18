@@ -1,0 +1,19 @@
+<p-card header="New REST REQUEST">
+  <div>
+      <p-selectButton [options]="types" [(ngModel)]="request.type"></p-selectButton>
+  </div>
+  <div>
+      <p-selectButton [options]="methods" [(ngModel)]="request.method"></p-selectButton>
+  </div>
+  <div>
+    <input type="text" pInputText placeholder="URL" [(ngModel)]="request.url" />
+  </div>
+  <div>
+    <textarea cols="80" rows="10" placeholder="json body" [(ngModel)]="request.body"></textarea>
+  </div>
+
+  <button pButton label="Cancel" class="ui-button-error" (click)="onCancel()"></button>
+  <button pButton label="Save" class="ui-button-success" (click)="onSubmit()"></button>
+  </p-card>
+
+

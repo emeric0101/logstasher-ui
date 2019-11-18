@@ -14,4 +14,5 @@ export class RestRequest {
     private url: string;
     private type: string;
     private body: string;
+    private method: string;
 }

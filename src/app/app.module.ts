@@ -29,6 +29,8 @@ import { consoleSyntaxePipe } from './pipes/console-syntax.pipe';
 import { WebsocketService } from './services/websocket.service';
 import { BatchArchiveComponent } from './batch-archive/batch-archive.component';
 import { EditRestRequestComponent } from './batches/edit-rest-request/edit-rest-request.component';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import { NewRestRequestComponent } from './batches/edit-rest-request/new-rest-request/new-rest-request.component';
 
 @NgModule({
    declarations: [
@@ -43,7 +45,8 @@ import { EditRestRequestComponent } from './batches/edit-rest-request/edit-rest-
       CurrentQueueComponent,
       consoleSyntaxePipe,
       BatchArchiveComponent,
-      EditRestRequestComponent
+      EditRestRequestComponent,
+      NewRestRequestComponent
    ],
    imports: [
       BrowserModule,
@@ -57,7 +60,8 @@ import { EditRestRequestComponent } from './batches/edit-rest-request/edit-rest-
       CardModule,
       TerminalModule,
       DialogModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      SelectButtonModule
    ],
    providers: [
       HttpService,

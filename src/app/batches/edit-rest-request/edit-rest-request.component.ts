@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Batch } from '../batch';
+import { BatchesService } from '../batches.service';
 
 @Component({
   selector: 'app-edit-rest-request',
@@ -9,9 +10,23 @@ import { Batch } from '../batch';
 export class EditRestRequestComponent implements OnInit {
   @Input() batch: Batch;
   @Output() onFinish = new EventEmitter();
-  constructor() { }
 
+  displayNew = false;
+
+  constructor(
+    private batchService: BatchesService
+  ) { }
+  
   ngOnInit() {
+  }
+
+  delete(item) {
+    this.batch.entyRequests = this.batch.entyRequests.filter(e => e != item);
+    this.batchService.save(this.batch);
+   }
+
+  onCancel() {
+    this.onFinish.emit();
   }
 
 }

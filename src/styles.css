@@ -23,3 +23,6 @@
 .ui-button {
     margin: 5px !important;
 }
+body {
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
