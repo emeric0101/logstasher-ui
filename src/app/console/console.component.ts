@@ -15,6 +15,8 @@ export class ConsoleComponent implements OnInit, OnDestroy {
   running: Running;
   timer;
 
+  showConsole = false;
+
   socketError = false;
 
   constructor(
@@ -56,7 +58,7 @@ export class ConsoleComponent implements OnInit, OnDestroy {
     clearInterval(this.timer);
   }
 
-  
+
   async restart() {
     await this.consoleService.restartLogstash();
   }
@@ -67,7 +69,7 @@ export class ConsoleComponent implements OnInit, OnDestroy {
 
   /**
    * Remove all info msg not needed here
-   * @param buffer 
+   * @param buffer
    */
   filterBuffer(buffer: string[]) {
     if (!buffer) {

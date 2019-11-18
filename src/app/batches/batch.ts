@@ -11,8 +11,9 @@ export class Batch {
 }
 
 export class RestRequest {
-    private url: string;
-    private type: string;
-    private body: string;
-    private method: string;
+    url: string;
+    type: string;
+    body: string;
+    method: string;
 }
+

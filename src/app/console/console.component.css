@@ -16,3 +16,9 @@
 .DONE {
     color: green;
 }
+
+.instance-state {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}

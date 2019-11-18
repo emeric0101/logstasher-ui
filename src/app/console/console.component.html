@@ -1,22 +1,26 @@
-<app-current-queue></app-current-queue>
 
-<p-card header="Logstash output">
-    <div class="console">
-        <div *ngFor="let line of filterBuffer(buffer)" [innerHTML]="line | consoleSyntaxe"></div>
-    </div>
-    <div *ngIf="!socketError">
-            <button *ngIf="running && running.state != 'KILLING'" [disabled]="true" pButton type="button" label="{{running && running.state == 'RUNNING' ? 'Restart' :'Start pipeline'}}" (click)="restart()" class="ui-button-warn"></button>
-            <button *ngIf="running && running.state != 'KILLING'" pButton type="button" label="{{running && running.state == 'RUNNING' ? 'Restart batches' :'Start batches'}}" (click)="restartBatches()" class="ui-button-warn"></button>
-            <button *ngIf="running && running.state != 'KILLING' && running.state != 'STOPPED'" pButton type="button" label="Stop" (click)="stop()" class="ui-button-error"></button>        
-    </div>
-    <br/>
-    <div *ngIf="socketError" class="console-error console-msg">
-        Server connection error
-        <button pButton label="Reconnect" (click)="reconnect()"></button>
-    </div>
-</p-card>
+
+<div *ngIf="socketError" class="console-error console-msg">
+  Server connection error
+  <button pButton label="Reconnect" (click)="reconnect()"></button>
+</div>
+
 <p-card header="Logstash instance" *ngIf="running && !socketError">
-    <div [attr.class]="running.state">
+    <div [attr.class]="running.state + ' instance-state'">
         {{running.state}}
     </div>
+
+  <button pButton label="Show console" (click)="showConsole = !showConsole"></button>
+  <button *ngIf="running && running.state != 'KILLING'" pButton type="button" label="{{running && running.state == 'RUNNING' ? 'Restart batches' :'Start batches'}}" (click)="restartBatches()" class="ui-button-warn"></button>
+  <button *ngIf="running && running.state != 'KILLING' && running.state != 'STOPPED'" pButton type="button" label="Stop" (click)="stop()" class="ui-button-error"></button>
+</p-card>
+<br/>
+<p-card header="Logstash output"  *ngIf="showConsole">
+  <div *ngIf="!socketError">
+  </div>
+  <div class="console">
+    <div *ngFor="let line of filterBuffer(buffer)" [innerHTML]="line | consoleSyntaxe"></div>
+  </div>
+  <br/>
+
 </p-card>

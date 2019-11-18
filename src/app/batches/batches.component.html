@@ -31,13 +31,16 @@
                         (ngModelChange)="save(item)" placeholder="timeout"> (min)
                 </td>
                 <td>
-                    <button pButton type="button" label="Manage requests" (click)="editRest(item)"></button>
+                    <button pButton type="button" label="Webhooks" (click)="editRest(item)"></button>
                     <button pButton type="button" label="Edit" (click)="edit(item)"></button>
                     <button pButton type="button" label="Delete" (click)="delete(item)"
                         class="ui-button-error"></button>
-                    <button pButton type="button" [disabled]="isLogstashRunning()" label="Start" (click)="start(item)"
-                        class="ui-button-success"></button>
+
                 </td>
+              <td>
+                <button pButton type="button" [disabled]="isLogstashRunning()" label="Start" (click)="start(item)"
+                        class="ui-button-success"></button>
+              </td>
             </tr>
         </ng-template>
     </p-table>

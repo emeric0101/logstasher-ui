@@ -1,5 +1,15 @@
 <h1>Logstasher v0.1</h1>
-<app-console></app-console>
-<app-batches></app-batches>
-<app-pipelines *ngIf="false"></app-pipelines>
-<app-batch-archive></app-batch-archive>
+<div class="p-grid">
+  <div class="p-col-7">
+    <app-console></app-console>
+    <br/>
+    <app-batches></app-batches>
+    <br/>
+    <app-pipelines *ngIf="false"></app-pipelines>
+  </div>
+  <div class="p-col-5">
+    <app-current-queue></app-current-queue>
+    <br/>
+    <app-batch-archive></app-batch-archive>
+  </div>
+</div>
