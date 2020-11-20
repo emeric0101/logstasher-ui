@@ -1,27 +1,43 @@
-<p-card header="Working batches">
-  <p-table [value]="batches">
+<p-card header="Working Instances">
+  <p-table [value]="instances">
     <ng-template pTemplate="header">
 
       <tr>
-        <th>ID</th>
+        <th>Batch / Pipelines</th>
         <th>Start time</th>
-        <th>End time</th>
         <th>State</th>
         <th>Action</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-batch>
+    <ng-template pTemplate="body" let-instance>
       <tr>
-        <td>{{batch.batch.id}}</td>
-        <td>{{batch.startTime}}</td>
-        <td>{{batch.endTime}}</td>
-        <td><span [attr.class]="batch.state + ' console-msg'">{{batch.state}}</span></td>
-        <td><button pButton label="Output" (click)="showConsole(batch)"></button></td>
+        <td>
+          <ng-container *ngIf="instance.batch">{{instance.batch.id}}</ng-container>
+          <ng-container *ngIf="instance.pipelines">{{renderPipelines(instance.pipelines)}}</ng-container>
+        </td>
+        <td>{{instance.started}}</td>
+        <td>
+          <div class="state">
+            <div *ngIf="instance.state == 'RUNNING' || instance.state == 'STARTING'">
+              <p-progressSpinner [style]="{width: '50px', height: '50px'}"></p-progressSpinner>
+            </div>
+            <div [attr.class]="instance.state + ' console-msg'">{{instance.state}}</div>
+          </div>
+        </td>
+
+
+        <td>
+          <button pButton label="Output" (click)="showConsole(instance)"></button>
+        </td>
       </tr>
     </ng-template>
   </p-table>
-  <div class="console" *ngIf="currentBatch">
-    <div *ngFor="let line of currentBatch.output" [innerHTML]="line | consoleSyntaxe">
+
+</p-card>
+
+<p-dialog header="Logstash Console" [(visible)]="displayTerminal">
+  <div class="console" *ngIf="displayTerminal">
+    <div *ngFor="let line of displayTerminal.buffer" [innerHTML]="line | consoleSyntaxe">
     </div>
   </div>
-</p-card>
+</p-dialog>

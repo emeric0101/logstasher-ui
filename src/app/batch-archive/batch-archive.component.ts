@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { BatchesService } from '../batches/batches.service';
 import { BatchArchive } from '../batches/batch-archive.class';
 import {Subscription} from "rxjs";
+import {LogstasherService} from "../console/logstasher.service";
 
 @Component({
   selector: 'app-batch-archive',
@@ -12,7 +13,8 @@ export class BatchArchiveComponent implements OnInit, OnDestroy {
   sub: Subscription;
   archives: BatchArchive[];
   constructor(
-    protected batchService: BatchesService
+    protected batchService: BatchesService,
+    protected logstashService: LogstasherService
   ) { }
 
   ngOnDestroy(): void {
@@ -21,7 +23,7 @@ export class BatchArchiveComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     await this.init();
-    this.sub = this.batchService.updated.subscribe(() => {
+    this.sub = this.logstashService.logstasherEvent.subscribe(() => {
       this.init();
     })
   }

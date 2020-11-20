@@ -6,7 +6,8 @@ import { Pipeline } from './pipeline';
   providedIn: 'root'
 })
 export class PipelineService {
-  modelName = "pipeline";
+  readonly modelName = "pipeline";
+  readonly instance = '_pipeline';
 constructor(
   private httpService: HttpService
 ) { }

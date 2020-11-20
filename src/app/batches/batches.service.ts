@@ -5,7 +5,8 @@ import { BatchArchive } from './batch-archive.class';
 
 @Injectable({providedIn: 'root'})
 export class BatchesService {
-    modelName = "batches";
+    readonly modelName = "batches";
+    readonly instance = '_batch';
 
     public updated = new EventEmitter();
 
@@ -22,10 +23,6 @@ export class BatchesService {
       }
       public delete(p: Batch) {
         this.httpService.delete(this.modelName + '/' + p.id);
-      }
-      start(p: Batch) {
-        this.httpService.get(this.modelName + '/start/' + p.id);
-        this.updated.emit();
       }
 
       public findArchiveWeek() {

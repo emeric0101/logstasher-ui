@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PipelineService } from './pipeline.service';
 import { Pipeline } from './Pipeline';
+import {LogstasherService} from "../console/logstasher.service";
 
 @Component({
   selector: 'app-pipelines',
@@ -14,8 +15,10 @@ export class PipelinesComponent implements OnInit {
 
   pipelines: Pipeline[];
   errorMsg = '';
+  displayNew = false;
   constructor(
-    private pipelineService: PipelineService
+    private pipelineService: PipelineService,
+    private logstasherService: LogstasherService
   ) { }
 
   edit(va) {
@@ -43,4 +46,15 @@ export class PipelinesComponent implements OnInit {
     setTimeout(e => this.ngOnInit(), 1000);
   }
 
+  isBusy() {
+    return this.logstasherService.getIsBusy(this.pipelineService.instance);
+  }
+
+  start() {
+    this.logstasherService.startPipeline();
+  }
+
+  stop() {
+    this.logstasherService.stopPipeline();
+  }
 }

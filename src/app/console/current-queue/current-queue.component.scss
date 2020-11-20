@@ -4,3 +4,14 @@
 .DONE {
     background-color: green;
 }
+
+.state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.console {
+  overflow: scroll;
+  border: 1px solid lightblue;
+}

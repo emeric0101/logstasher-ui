@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Batch } from './batch';
 import { BatchesService } from './batches.service';
-import { ConsoleService } from '../console/console.service';
+import { LogstasherService } from '../console/logstasher.service';
 
 @Component({
   selector: 'app-batches',
@@ -19,7 +19,7 @@ export class BatchesComponent implements OnInit {
   errorMsg = '';
   constructor(
     protected batchesService: BatchesService,
-    protected consoleService: ConsoleService
+    protected consoleService: LogstasherService
   ) { }
 
   edit(va) {
@@ -53,11 +53,11 @@ export class BatchesComponent implements OnInit {
   }
 
   start(p: Batch) {
-    this.batchesService.start(p);
+    this.consoleService.startBatch(p.id);
   }
 
   isLogstashRunning() {
-    return this.consoleService.getIsBusy();
+    return this.consoleService.getIsBusy(this.batchesService.instance);
   }
 
   onNewBatch() {

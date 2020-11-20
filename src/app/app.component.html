@@ -1,11 +1,23 @@
-<h1>Logstasher v0.1</h1>
+<div class="nav">
+  <span class="title">Logstasher </span><span class="version">v0.2</span>
+</div>
+
 <div class="p-grid">
   <div class="p-col-7">
-    <app-console></app-console>
-    <br/>
-    <app-batches></app-batches>
-    <br/>
-    <app-pipelines *ngIf="false"></app-pipelines>
+
+    <p-tabView>
+
+      <p-tabPanel header="Batches">
+        <app-batches></app-batches>
+      </p-tabPanel>
+      <p-tabPanel header="Pipelines">
+        <div class="p-grid">
+          <div class="p-col-7">
+            <app-pipelines></app-pipelines>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
   </div>
   <div class="p-col-5">
     <app-current-queue></app-current-queue>
@@ -13,3 +25,6 @@
     <app-batch-archive></app-batch-archive>
   </div>
 </div>
+
+
+<pre style="text-align:center;">Emeric BAVEUX</pre>

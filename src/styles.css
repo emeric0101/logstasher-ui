@@ -1,28 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-.console {
-    background-color: black;
-    color: green;
-    overflow-y: scroll;
-    height: 200px;
-}
-.console-msg {
-    border-radius: 5px;
-    padding: 2px;
-    color: black;
-}
-.console-error {
-    background-color: red;
-}
-.console-info {
-    background-color: lightgrey;
-}
-.console-warn {
-    background-color: orange;
-}
 
-.ui-button {
-    margin: 5px !important;
-}
 body {
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.btn-bar > button{
+  margin: 5px;
 }

@@ -4,19 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { PipelinesComponent } from './pipelines/pipelines.component';
 
-import {InputTextModule} from 'primeng/inputtext';
 import { HttpService } from './services/Http.service';
 import { PipelineService } from './pipelines/pipeline.service';
 import { CreateComponent } from './pipelines/create/create.component';
 import { FormsModule }   from '@angular/forms';
-import {ButtonModule} from 'primeng/button';
-import {FileUploadModule} from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
-import {TableModule} from 'primeng/table';
-import {CheckboxModule} from 'primeng/checkbox';
-import {CardModule} from 'primeng/card';
-import {TerminalModule} from 'primeng/terminal';
-import { ConsoleComponent } from './console/console.component';
 import {DialogModule} from 'primeng/dialog';
 import { EditComponent } from './pipelines/edit/edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,13 +23,22 @@ import { BatchArchiveComponent } from './batch-archive/batch-archive.component';
 import { EditRestRequestComponent } from './batches/edit-rest-request/edit-rest-request.component';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { NewRestRequestComponent } from './batches/edit-rest-request/new-rest-request/new-rest-request.component';
+import {InputTextModule} from "primeng/inputtext";
+import {ButtonModule} from "primeng/button";
+import {FileUploadModule} from "primeng/fileupload";
+import {TableModule} from "primeng/table";
+import {CheckboxModule} from "primeng/checkbox";
+import {CardModule} from "primeng/card";
+import {TerminalModule} from "primeng/terminal";
+import {TabViewModule} from "primeng/tabview";
+import {RippleModule} from "primeng/ripple";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 @NgModule({
    declarations: [
       AppComponent,
       PipelinesComponent,
       CreateComponent,
-      ConsoleComponent,
       EditComponent,
       BatchesComponent,
       BatchesCreateComponent,
@@ -48,21 +49,25 @@ import { NewRestRequestComponent } from './batches/edit-rest-request/new-rest-re
       EditRestRequestComponent,
       NewRestRequestComponent
    ],
-   imports: [
-      BrowserModule,
-      FormsModule,
-      InputTextModule,
-      ButtonModule,
-      FileUploadModule,
-      HttpClientModule,
-      TableModule,
-      CheckboxModule,
-      CardModule,
-      TerminalModule,
-      DialogModule,
-      BrowserAnimationsModule,
-      SelectButtonModule
-   ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    InputTextModule,
+    ButtonModule,
+    FileUploadModule,
+    HttpClientModule,
+    TableModule,
+    CheckboxModule,
+    CardModule,
+    TerminalModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    SelectButtonModule,
+    TabViewModule,
+    RippleModule,
+    ProgressSpinnerModule
+
+  ],
    providers: [
       HttpService,
       PipelineService,
