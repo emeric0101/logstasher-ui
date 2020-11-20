@@ -12,6 +12,12 @@
 .ERROR {
     color: red;
 }
+tr.ERROR {
+  background-color: #ffe4e7;
+}
+tr.STOPPED {
+  background-color: #dddddd;
+}
 
 .DONE {
     color: green;

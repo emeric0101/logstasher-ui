@@ -1,0 +1,13 @@
+<div class="p-col-12 p-grid">
+  <label>Trigger</label>
+  <input type="number" min="0" max="23" pInputText [(ngModel)]="batch.startHour" (ngModelChange)="onChange()" placeholder="hour">
+  <input type="number" pInputText min="0" max="59" [(ngModel)]="batch.startMinute" (ngModelChange)="onChange()" placeholder="minute">
+
+  <p-dropdown [options]="recOptions" [(ngModel)]="batch.recurrence" (ngModelChange)="onChange()"></p-dropdown>
+  <ng-container *ngIf="batch.recurrence == RecurrenceEnum.Weekly">
+    <p-selectButton multiple="true" [options]="weekDaysOptions" [(ngModel)]="batch.weekDays" (ngModelChange)="onChange()"></p-selectButton>
+  </ng-container>
+  <ng-container *ngIf="batch.recurrence == RecurrenceEnum.Monthly">
+    <input type="number" min="1" max="28" pInputText [(ngModel)]="batch.monthDate" (ngModelChange)="onChange()" placeholder="Date of the month"/>
+  </ng-container>
+</div>

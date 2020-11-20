@@ -5,7 +5,7 @@ import {WebsocketService} from "../services/websocket.service";
 import { EventEmitter } from '@angular/core';
 import {Batch} from "../batches/batch";
 import {Pipeline} from "../pipelines/pipeline";
-import {BatchArchive} from "../batches/batch-archive.class";
+import {ExecutionArchive} from "../batches/batch-archive.class";
 
 export class LogstasherEvent {
 
@@ -16,7 +16,7 @@ export class LogstasherEvent {
 export class LogstashInstance {
   state: string;
   instance: string;
-  batch: BatchArchive;
+  batch: ExecutionArchive;
   pipelines: Pipeline[];
   buffer: string[];
   started: string;
@@ -75,5 +75,13 @@ export class LogstasherService {
 
   stopPipeline() {
     return this.httpService.get("pipeline/stop");
+  }
+
+  stopBatch(instance: string) {
+    return this.httpService.get("batches/stop");
+  }
+
+  clearData(instance: string) {
+    return this.httpService.get('logstash/clearData/' + instance);
   }
 }

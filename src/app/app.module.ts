@@ -19,7 +19,7 @@ import { BatchesCreateComponent } from './batches/batches-create/batches-create.
 import { CurrentQueueComponent } from './console/current-queue/current-queue.component';
 import { consoleSyntaxePipe } from './pipes/console-syntax.pipe';
 import { WebsocketService } from './services/websocket.service';
-import { BatchArchiveComponent } from './batch-archive/batch-archive.component';
+import { ExecutionArchiveComponent } from './execution-archive/execution-archive.component';
 import { EditRestRequestComponent } from './batches/edit-rest-request/edit-rest-request.component';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { NewRestRequestComponent } from './batches/edit-rest-request/new-rest-request/new-rest-request.component';
@@ -33,6 +33,8 @@ import {TerminalModule} from "primeng/terminal";
 import {TabViewModule} from "primeng/tabview";
 import {RippleModule} from "primeng/ripple";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {DropdownModule} from "primeng/dropdown";
+import { RecurrenceSettingComponent } from './batches/recurrence-setting/recurrence-setting.component';
 
 @NgModule({
    declarations: [
@@ -45,29 +47,31 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
       BatchesEditComponent,
       CurrentQueueComponent,
       consoleSyntaxePipe,
-      BatchArchiveComponent,
+      ExecutionArchiveComponent,
       EditRestRequestComponent,
-      NewRestRequestComponent
+      NewRestRequestComponent,
+      RecurrenceSettingComponent
    ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    InputTextModule,
-    ButtonModule,
-    FileUploadModule,
-    HttpClientModule,
-    TableModule,
-    CheckboxModule,
-    CardModule,
-    TerminalModule,
-    DialogModule,
-    BrowserAnimationsModule,
-    SelectButtonModule,
-    TabViewModule,
-    RippleModule,
-    ProgressSpinnerModule
+    imports: [
+        BrowserModule,
+        FormsModule,
+        InputTextModule,
+        ButtonModule,
+        FileUploadModule,
+        HttpClientModule,
+        TableModule,
+        CheckboxModule,
+        CardModule,
+        TerminalModule,
+        DialogModule,
+        BrowserAnimationsModule,
+        SelectButtonModule,
+        TabViewModule,
+        RippleModule,
+        ProgressSpinnerModule,
+        DropdownModule
 
-  ],
+    ],
    providers: [
       HttpService,
       PipelineService,

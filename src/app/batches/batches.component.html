@@ -24,10 +24,21 @@
                 </td>
                 <td>{{item.order}}</td>
                 <td>
-                    <input type="number" min="0" max="23" pInputText [(ngModel)]="item.startHour"
-                        (ngModelChange)="save(item)" placeholder="hour">
-                    <input type="number" pInputText min="0" max="59" [(ngModel)]="item.startMinute"
-                        (ngModelChange)="save(item)" placeholder="minute">
+                  <div>
+                    Start : {{item.startHour}}:{{item.startMinute}}<br/>
+                    <ng-container *ngIf="item.recurrence == RecurrenceEnum.Weekly">
+                      {{item.recurrence}}
+
+                      <ng-container *ngFor="let day of weekOptions;">
+                        <ng-container *ngIf="item?.weekDays?.includes(day.value)"></ng-container>
+                        {{day.label}}
+                      </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="item.recurrence == RecurrenceEnum.Monthly">
+                      All {{item.monthDate}} of month
+                    </ng-container>
+                  </div>
                 </td>
                 <td> <input type="number" min="1" max="600" pInputText [(ngModel)]="item.timeout"
                         (ngModelChange)="save(item)" placeholder="timeout"> (min)

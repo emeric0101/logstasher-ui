@@ -26,8 +26,9 @@
         </td>
 
 
-        <td>
-          <button pButton label="Output" (click)="showConsole(instance)"></button>
+        <td class="btn-bar">
+          <button pButton type="button" icon="pi pi-info" class="p-button-rounded" (click)="showConsole(instance)"></button>
+          <button pButton type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="stop(instance)"></button>
         </td>
       </tr>
     </ng-template>
@@ -36,8 +37,9 @@
 </p-card>
 
 <p-dialog header="Logstash Console" [(visible)]="displayTerminal">
-  <div class="console" *ngIf="displayTerminal">
-    <div *ngFor="let line of displayTerminal.buffer" [innerHTML]="line | consoleSyntaxe">
-    </div>
-  </div>
+  <table class="console" *ngIf="displayTerminal">
+    <tr *ngFor="let line of displayTerminal.buffer" >
+      <td [innerHTML]="line | consoleSyntaxe"></td>
+    </tr>
+  </table>
 </p-dialog>

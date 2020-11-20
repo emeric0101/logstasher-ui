@@ -7,8 +7,34 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <style>
+      body {
+        font-family: "Open Sans", "Helvetica Neue", sans-serif;
+        margin: 0;
+      }
+      @keyframes  loading_anim {
+        0% {opacity: 0; font-size: 15px;}
+        100% {opacity: 1; font-size: 30px;}
+      }
+
+      .welcome {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        animation-name: loading_anim;
+        animation-iteration-count: infinite;
+        animation-duration: 2s;
+      }
+    </style>
+    <div class="welcome">
+      <h1>Loading...</h1>
+    </div>
+  </app-root>
 </body>
 </html>

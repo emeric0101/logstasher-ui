@@ -47,4 +47,13 @@ export class CurrentQueueComponent implements OnInit, OnDestroy {
   renderPipelines(pipelines: Pipeline[]) {
     return pipelines.map(e => e.id).join(",");
   }
+
+  stop(instance: LogstashInstance) {
+    if (instance.instance == '_batch') {
+      this.consoleService.stopBatch(instance.instance);
+    } else {
+      this.consoleService.stopPipeline();
+    }
+
+  }
 }

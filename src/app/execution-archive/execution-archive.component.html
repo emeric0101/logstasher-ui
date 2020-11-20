@@ -1,0 +1,73 @@
+<p-card header="History">
+  <p-tabView>
+
+    <p-tabPanel header="Batches">
+      <p-table [value]="batches">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Total</th>
+            <th>State</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr [attr.class]="item.state">
+            <td>
+              <span *ngIf="item.batch">{{item.batch.id}}</span>
+            </td>
+            <td *ngIf="item.type == 'MANUAL'">
+              <i class="pi pi-users" aria-hidden="true"></i>
+            </td>
+            <td *ngIf="item.type == 'AUTO'">
+              <i class="pi pi-clock" aria-hidden="true"></i>
+            </td>
+            <td>{{item.startTime | date: 'short'}}</td>
+            <td>{{item.endTime | date: 'short'}}</td>
+            <td>{{(computeTotal(item))}} min</td>
+            <td>
+              <i [attr.class]="item.state + ' pi pi-check'" *ngIf="item.state == 'DONE'"></i>
+              <i [attr.class]="item.state + ' pi pi-times'" *ngIf="item.state == 'ERROR'"></i>
+              <i [attr.class]="item.state + ' pi pi-times'" *ngIf="item.state == 'STOPPED'"></i>
+              <i [attr.class]="item.state + ' pi pi-spin pi-spinner'"
+                 *ngIf="item.state == 'STARTING' || item.state == 'RUNNING'"></i>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Pipelines">
+      <p-table [value]="pipelines">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Id</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Total</th>
+            <th>State</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr [attr.class]="item.state">
+            <td>
+              <span *ngIf="item.pipeline">{{renderPipelines(item.pipeline)}}</span>
+            </td>
+            <td>{{item.startTime | date: 'short'}}</td>
+            <td>{{item.endTime | date: 'short'}}</td>
+            <td>{{(computeTotal(item))}} min</td>
+            <td>
+              <i [attr.class]="item.state + ' pi pi-check'" *ngIf="item.state == 'DONE'"></i>
+              <i [attr.class]="item.state + ' pi pi-times'" *ngIf="item.state == 'ERROR'"></i>
+              <i [attr.class]="item.state + ' pi pi-times'" *ngIf="item.state == 'STOPPED'"></i>
+              <i [attr.class]="item.state + ' pi pi-spin pi-spinner'"
+                 *ngIf="item.state == 'STARTING' || item.state == 'RUNNING'"></i>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+  </p-tabView>
+
+</p-card>

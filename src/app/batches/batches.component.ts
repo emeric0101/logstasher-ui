@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Batch } from './batch';
+import {Batch, RecurrenceEnum} from './batch';
 import { BatchesService } from './batches.service';
 import { LogstasherService } from '../console/logstasher.service';
+import {RecurrenceSettingComponent} from "./recurrence-setting/recurrence-setting.component";
 
 @Component({
   selector: 'app-batches',
@@ -17,6 +18,8 @@ export class BatchesComponent implements OnInit {
   displayRestEdit = false;
 
   errorMsg = '';
+  RecurrenceEnum = RecurrenceEnum;
+  weekOptions = RecurrenceSettingComponent.weekDaysOptions;
   constructor(
     protected batchesService: BatchesService,
     protected consoleService: LogstasherService

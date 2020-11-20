@@ -1,8 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Pipeline } from 'src/app/pipelines/pipeline';
-import { PipelineService } from 'src/app/pipelines/pipeline.service';
-import { Batch } from '../batch';
-import { BatchesService } from '../batches.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Batch, RecurrenceEnum} from '../batch';
+import {BatchesService} from '../batches.service';
 
 @Component({
   selector: 'app-batches-create',
@@ -11,21 +9,25 @@ import { BatchesService } from '../batches.service';
 })
 export class BatchesCreateComponent implements OnInit {
   @Output() updated = new EventEmitter();
-  batch : Batch = {
-      id: "",
-      content: "",
-      activated: false,
-      lastTime: null,
-      order: 1,
-      startHour: 23,
-      startMinute: 0,
-      timeout: 60,
-      entyRequests: []
+  batch: Batch = {
+    id: "",
+    content: "",
+    activated: false,
+    lastTime: null,
+    order: 1,
+    startHour: 23,
+    startMinute: 0,
+    timeout: 60,
+    entyRequests: [],
+    recurrence: RecurrenceEnum.Daily,
+    weekDays: [],
+    monthDate: null
   };
 
   constructor(
     private batchService: BatchesService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }
@@ -47,6 +49,7 @@ export class BatchesCreateComponent implements OnInit {
       reader.readAsText($event.files[0]);
     }
   }
+
   fixId() {
     this.batch.id = this.batch.id.split('/').join('');
   }
