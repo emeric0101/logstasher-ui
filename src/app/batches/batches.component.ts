@@ -66,4 +66,8 @@ export class BatchesComponent implements OnInit {
   onNewBatch() {
     this.displayNew = true;
   }
+
+  pad(v) {
+    return ("" + v).padStart(2, "0");
+  }
 }

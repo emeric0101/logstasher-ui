@@ -6,11 +6,11 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Id</th>
-            <th>Type</th>
+            <th width="60px">Type</th>
             <th>Start time</th>
             <th>End time</th>
-            <th>Total</th>
-            <th>State</th>
+            <th width="90px">Total</th>
+            <th width="60px">State</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
@@ -24,8 +24,8 @@
             <td *ngIf="item.type == 'AUTO'">
               <i class="pi pi-clock" aria-hidden="true"></i>
             </td>
-            <td>{{item.startTime | date: 'short'}}</td>
-            <td>{{item.endTime | date: 'short'}}</td>
+            <td>{{item.startTime | date: 'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{item.endTime | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{(computeTotal(item))}} min</td>
             <td>
               <i [attr.class]="item.state + ' pi pi-check'" *ngIf="item.state == 'DONE'"></i>

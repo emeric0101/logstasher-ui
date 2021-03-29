@@ -3,9 +3,18 @@
 
 .btn-bar > button{
   margin: 5px;
+  font-size: 12px;
+}
+
+.p-component {
+  font-size: .95em;
 }
 
 
 body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: .80em .80em !important;
 }

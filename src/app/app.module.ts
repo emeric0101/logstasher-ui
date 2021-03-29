@@ -35,6 +35,7 @@ import {RippleModule} from "primeng/ripple";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {DropdownModule} from "primeng/dropdown";
 import { RecurrenceSettingComponent } from './batches/recurrence-setting/recurrence-setting.component';
+import {InputTextareaModule} from "primeng/inputtextarea";
 
 @NgModule({
    declarations: [
@@ -69,7 +70,8 @@ import { RecurrenceSettingComponent } from './batches/recurrence-setting/recurre
         TabViewModule,
         RippleModule,
         ProgressSpinnerModule,
-        DropdownModule
+        DropdownModule,
+      InputTextareaModule
 
     ],
    providers: [

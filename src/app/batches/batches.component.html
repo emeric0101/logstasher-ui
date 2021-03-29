@@ -10,10 +10,11 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>ID</th>
-                <th>Active</th>
-                <th>Order</th>
+                <th width="90px">Active</th>
+                <th  width="90px">Order</th>
                 <th>Start time (HH:mm)</th>
                 <th>Timeout</th>
+              <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
@@ -25,19 +26,21 @@
                 <td>{{item.order}}</td>
                 <td>
                   <div>
-                    Start : {{item.startHour}}:{{item.startMinute}}<br/>
+                    Start : {{pad(item.startHour)}}:{{pad(item.startMinute)}}<br/>
+                    <div class="rec">{{item.recurrence || 'Daily'}}</div>
+                    <br/>
                     <ng-container *ngIf="item.recurrence == RecurrenceEnum.Weekly">
-                      {{item.recurrence}}
 
                       <ng-container *ngFor="let day of weekOptions;">
-                        <ng-container *ngIf="item?.weekDays?.includes(day.value)"></ng-container>
+                        <div class="day" *ngIf="item?.weekDays?.includes(day.value)">
                         {{day.label}}
+                        </div>
                       </ng-container>
                     </ng-container>
 
-                    <ng-container *ngIf="item.recurrence == RecurrenceEnum.Monthly">
-                      All {{item.monthDate}} of month
-                    </ng-container>
+                    <div class="day" *ngIf="item.recurrence == RecurrenceEnum.Monthly">
+                      All {{item.monthDate}}
+                    </div>
                   </div>
                 </td>
                 <td> <input type="number" min="1" max="600" pInputText [(ngModel)]="item.timeout"
@@ -65,6 +68,6 @@
     <app-batches-edit *ngIf="editBatch" [batch]="editBatch" (onFinish)="displayEdit = false;"></app-batches-edit>
 </p-dialog>
 
-<p-dialog header="Edit batch" [(visible)]="displayRestEdit">
+<p-dialog header="Edit batch" [(visible)]="displayRestEdit" >
     <app-edit-rest-request *ngIf="editBatch" [batch]="editBatch" (onFinish)="displayRestEdit = false;"></app-edit-rest-request>
 </p-dialog>
