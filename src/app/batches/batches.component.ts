@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Batch, RecurrenceEnum} from './batch';
+import {Component, Input, OnInit} from '@angular/core';
+import {Batch, ExecutorEnum, RecurrenceEnum} from './batch';
 import { BatchesService } from './batches.service';
 import { LogstasherService } from '../console/logstasher.service';
 import {RecurrenceSettingComponent} from "./recurrence-setting/recurrence-setting.component";
@@ -20,6 +20,9 @@ export class BatchesComponent implements OnInit {
   errorMsg = '';
   RecurrenceEnum = RecurrenceEnum;
   weekOptions = RecurrenceSettingComponent.weekDaysOptions;
+
+  @Input() executor: ExecutorEnum;
+
   constructor(
     protected batchesService: BatchesService,
     protected consoleService: LogstasherService
@@ -37,7 +40,7 @@ export class BatchesComponent implements OnInit {
   async ngOnInit() {
     this.displayEdit = false;
     try {
-      this.batches = await this.batchesService.findAll();
+      this.batches = await this.batchesService.findAll(this.executor);
     } catch (exception) {
       this.errorMsg = 'Unable to join server';
     }
@@ -60,7 +63,7 @@ export class BatchesComponent implements OnInit {
   }
 
   isLogstashRunning() {
-    return this.consoleService.getIsBusy(this.batchesService.instance);
+    return this.consoleService.getIsBusy(this.executor);
   }
 
   onNewBatch() {

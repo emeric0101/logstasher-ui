@@ -58,7 +58,5 @@ export class PipelinesComponent implements OnInit {
     this.logstasherService.stopPipeline();
   }
 
-  clearData() {
-    this.logstasherService.clearData(this.pipelineService.instance);
-  }
+
 }

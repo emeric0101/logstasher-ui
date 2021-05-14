@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../services/Http.service';
 import { Pipeline } from './pipeline';
+import {ExecutorEnum} from "../batches/batch";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PipelineService {
   readonly modelName = "pipeline";
-  readonly instance = '_pipeline';
+  readonly instance = ExecutorEnum.LOGSTASH_PIPELINE;
 constructor(
   private httpService: HttpService
 ) { }

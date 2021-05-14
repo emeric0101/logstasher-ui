@@ -38,8 +38,8 @@
 
 <p-dialog header="Logstash Console" [(visible)]="displayTerminal">
   <table class="console" *ngIf="displayTerminal">
-    <tr *ngFor="let line of displayTerminal.buffer" >
-      <td [innerHTML]="line | consoleSyntaxe"></td>
-    </tr>
+    <div *ngFor="let line of displayTerminal.buffer" >
+      <div [innerHTML]="line | consoleSyntaxe"></div>
+    </div>
   </table>
 </p-dialog>

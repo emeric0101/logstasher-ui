@@ -1,7 +1,18 @@
 <div *ngIf="batch">
-  <div>
+  <div *ngIf="batch.executor !== ExecutorEnum.TALEND">
     <textarea pInputTextarea *ngIf="batch" [(ngModel)]="batch.content" cols="100" rows="30"></textarea>
   </div>
+  <!-- TALEND CONFIG -->
+  <ng-container *ngIf="batch.executor == ExecutorEnum.TALEND">
+    <div class="p-col-12">
+      <label>Path of Talend JAR directory</label>
+      <input pInputText type="text" [(ngModel)]="batch.content"/>
+    </div>
+    <div class="p-col-12">
+      <label>Name of the .bat file to start talend</label>
+      <input pInputText type="text" [(ngModel)]="batch.talendPowershellName"/>
+    </div>
+  </ng-container>
   <div>
     Order :
     <input type="text" [(ngModel)]="batch.order" />

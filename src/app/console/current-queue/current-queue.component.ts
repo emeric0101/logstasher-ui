@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { ExecutionBatch, ExecutionQueue } from '../execution-queue.class';
 import {LogstasherEvent, LogstasherService, LogstashInstance} from '../logstasher.service';
 import {Pipeline} from "../../pipelines/pipeline";
 import {Subscription} from "rxjs";
+import {ExecutorEnum} from "../../batches/batch";
 
 @Component({
   selector: 'app-current-queue',
@@ -25,7 +25,6 @@ export class CurrentQueueComponent implements OnInit, OnDestroy {
         return;
       }
       const e = event.instance;
-      console.log(e);
       const instances = this.instances.filter(p => p.instance != e.instance);
       instances.push(e);
       this.setInstances(instances);
@@ -48,11 +47,12 @@ export class CurrentQueueComponent implements OnInit, OnDestroy {
     return pipelines.map(e => e.id).join(",");
   }
 
-  stop(instance: LogstashInstance) {
-    if (instance.instance == '_batch') {
-      this.consoleService.stopBatch(instance.instance);
-    } else {
+  stop(instance) {
+    console.log(instance);
+    if (instance.batch.executor == ExecutorEnum.LOGSTASH_PIPELINE) {
       this.consoleService.stopPipeline();
+    } else {
+      this.consoleService.stopBatch(instance.instance);
     }
 
   }

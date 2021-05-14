@@ -12,6 +12,13 @@ export class Batch {
   recurrence: RecurrenceEnum = RecurrenceEnum.Daily;
   weekDays: number[];
   monthDate: number;
+  executor: ExecutorEnum;
+  talendPowershellName?: string;
+}
+export enum ExecutorEnum {
+  LOGSTASH_BATCH = 'LOGSTASH_BATCH',
+  LOGSTASH_PIPELINE = 'LOGSTASH_PIPELINE',
+  TALEND = 'TALEND'
 }
 
 export class RestRequest {

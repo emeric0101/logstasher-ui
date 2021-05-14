@@ -28,6 +28,7 @@
             <td>{{item.endTime | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{(computeTotal(item))}} min</td>
             <td>
+              <i [attr.class]="item.state + ' pi pi-ellipsis-h'" *ngIf="item.state == 'IDLE'"></i>
               <i [attr.class]="item.state + ' pi pi-check'" *ngIf="item.state == 'DONE'"></i>
               <i [attr.class]="item.state + ' pi pi-times'" *ngIf="item.state == 'ERROR'"></i>
               <i [attr.class]="item.state + ' pi pi-times'" *ngIf="item.state == 'STOPPED'"></i>

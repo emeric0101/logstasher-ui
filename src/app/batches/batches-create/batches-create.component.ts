@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Batch, RecurrenceEnum} from '../batch';
+import {Batch, ExecutorEnum, RecurrenceEnum} from '../batch';
 import {BatchesService} from '../batches.service';
+
 
 @Component({
   selector: 'app-batches-create',
@@ -21,8 +22,21 @@ export class BatchesCreateComponent implements OnInit {
     entyRequests: [],
     recurrence: RecurrenceEnum.Daily,
     weekDays: [],
-    monthDate: null
+    monthDate: null,
+    executor: ExecutorEnum.LOGSTASH_BATCH
   };
+  batchExecutorOptions = [
+    {
+      label: 'LOGSTASH_BATCH', value: ExecutorEnum.LOGSTASH_BATCH
+    },
+    {
+      label: 'LOGSTASH_PIPELINE', value: ExecutorEnum.LOGSTASH_PIPELINE
+    },
+    {
+      label: 'TALEND', value: ExecutorEnum.TALEND
+    }
+  ];
+  ExecutorEnum = ExecutorEnum;
 
   constructor(
     private batchService: BatchesService

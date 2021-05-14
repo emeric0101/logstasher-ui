@@ -18,3 +18,13 @@ body {
 .p-datatable .p-datatable-tbody > tr > td {
   padding: .80em .80em !important;
 }
+
+.console-error {
+  color: red;
+}
+.console-info {
+  color: forestgreen;
+}
+.console-warn {
+  color: orange;
+}

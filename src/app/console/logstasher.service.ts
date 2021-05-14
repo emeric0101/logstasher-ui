@@ -78,10 +78,8 @@ export class LogstasherService {
   }
 
   stopBatch(instance: string) {
-    return this.httpService.get("batches/stop");
+    return this.httpService.get("batches/stop/" + instance);
   }
 
-  clearData(instance: string) {
-    return this.httpService.get('logstash/clearData/' + instance);
-  }
+
 }

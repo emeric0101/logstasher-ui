@@ -7,8 +7,11 @@
 
     <p-tabView>
 
-      <p-tabPanel header="Batches">
-        <app-batches></app-batches>
+      <p-tabPanel header="Batches Logstash">
+        <app-batches [executor]="ExecutorEnum.LOGSTASH_BATCH"></app-batches>
+      </p-tabPanel>
+      <p-tabPanel header="Batches Talend">
+        <app-batches [executor]="ExecutorEnum.TALEND"></app-batches>
       </p-tabPanel>
       <p-tabPanel header="Pipelines">
         <div class="p-grid">
