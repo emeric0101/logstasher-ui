@@ -36,23 +36,25 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {DropdownModule} from "primeng/dropdown";
 import { RecurrenceSettingComponent } from './batches/recurrence-setting/recurrence-setting.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {ConsoleComponent} from "./console/current-queue/console/console.component";
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      PipelinesComponent,
-      CreateComponent,
-      EditComponent,
-      BatchesComponent,
-      BatchesCreateComponent,
-      BatchesEditComponent,
-      CurrentQueueComponent,
-      consoleSyntaxePipe,
-      ExecutionArchiveComponent,
-      EditRestRequestComponent,
-      NewRestRequestComponent,
-      RecurrenceSettingComponent
-   ],
+    declarations: [
+        AppComponent,
+        PipelinesComponent,
+        CreateComponent,
+        EditComponent,
+        BatchesComponent,
+        BatchesCreateComponent,
+        BatchesEditComponent,
+        CurrentQueueComponent,
+        consoleSyntaxePipe,
+        ExecutionArchiveComponent,
+        EditRestRequestComponent,
+        NewRestRequestComponent,
+        RecurrenceSettingComponent,
+        ConsoleComponent
+    ],
     imports: [
         BrowserModule,
         FormsModule,

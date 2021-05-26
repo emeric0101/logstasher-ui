@@ -36,10 +36,6 @@
 
 </p-card>
 
-<p-dialog header="Logstash Console" [(visible)]="displayTerminal">
-  <table class="console" *ngIf="displayTerminal">
-    <div *ngFor="let line of displayTerminal.buffer" >
-      <div [innerHTML]="line | consoleSyntaxe"></div>
-    </div>
-  </table>
+<p-dialog header="Logstash Console"  [(visible)]="displayTerminal">
+  <app-console  *ngIf="displayTerminal" [lines]="displayTerminal.buffer"></app-console>
 </p-dialog>

@@ -13,7 +13,6 @@ export class Batch {
   weekDays: number[];
   monthDate: number;
   executor: ExecutorEnum;
-  talendPowershellName?: string;
 }
 export enum ExecutorEnum {
   LOGSTASH_BATCH = 'LOGSTASH_BATCH',

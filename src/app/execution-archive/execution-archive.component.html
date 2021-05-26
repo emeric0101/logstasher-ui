@@ -10,6 +10,7 @@
             <th>Start time</th>
             <th>End time</th>
             <th width="90px">Total</th>
+            <th width="60px">Log</th>
             <th width="60px">State</th>
           </tr>
         </ng-template>
@@ -27,6 +28,9 @@
             <td>{{item.startTime | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{item.endTime | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{(computeTotal(item))}} min</td>
+            <td>
+              <button pButton *ngIf="item.logPath"  type="button" icon="pi pi-info" class="p-button-rounded" (click)="showLog(item)"></button>
+            </td>
             <td>
               <i [attr.class]="item.state + ' pi pi-ellipsis-h'" *ngIf="item.state == 'IDLE'"></i>
               <i [attr.class]="item.state + ' pi pi-check'" *ngIf="item.state == 'DONE'"></i>
@@ -72,3 +76,8 @@
   </p-tabView>
 
 </p-card>
+
+
+<p-dialog header="Logstash Console"  [(visible)]="displayArchiveLog">
+  <app-console  *ngIf="displayArchiveLog" [lines]="displayArchiveLogLines"></app-console>
+</p-dialog>

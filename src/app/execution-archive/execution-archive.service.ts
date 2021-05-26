@@ -14,4 +14,8 @@ export class ExecutionArchiveService {
   public findArchiveWeek() {
     return this.httpService.get<ExecutionArchive[]>(this.modelName + '/archive');
   }
+
+  async getLog(id: string) {
+    return this.httpService.get<{lines: string[]}>(this.modelName + '/' + id + "/log");
+  }
 }

@@ -8,4 +8,5 @@ export class ExecutionArchive {
     startTime: Date;
     endTime: Date;
     state: string;
+  logPath?: string;
 }

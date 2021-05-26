@@ -16,6 +16,10 @@ export class ExecutionArchiveComponent implements OnInit, OnDestroy {
   archives: ExecutionArchive[];
   pipelines: ExecutionArchive[];
   batches: ExecutionArchive[];
+
+  displayArchiveLog = false;
+  displayArchiveLogLines: string[] = null;
+
   constructor(
     protected service: ExecutionArchiveService,
     protected logstashService: LogstasherService
@@ -52,4 +56,12 @@ export class ExecutionArchiveComponent implements OnInit, OnDestroy {
     return pipelines.map(e => e.id).join(",");
   }
 
+  async showLog(item: ExecutionArchive) {
+    this.displayArchiveLog = true;
+    try {
+      this.displayArchiveLogLines = (await this.service.getLog(item.id)).lines;
+    }catch (e) {
+      console.log(e);
+    }
+  }
 }
