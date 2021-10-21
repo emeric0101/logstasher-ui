@@ -78,6 +78,6 @@
 </p-card>
 
 
-<p-dialog header="Logstash Console"  [(visible)]="displayArchiveLog">
+<p-dialog header="Logstash Console"  [(visible)]="displayArchiveLog" style="width: 80vw;">
   <app-console  *ngIf="displayArchiveLog" [lines]="displayArchiveLogLines"></app-console>
 </p-dialog>

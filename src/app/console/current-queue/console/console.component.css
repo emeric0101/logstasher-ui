@@ -1,8 +1,7 @@
 .console {
   overflow: scroll;
   border: 1px solid lightblue;
-  height: 40vh;
-  width: 60vw;
+  height: 60vh;
   border: none;
   background-color: #edf9ff;
   color: #363636;
@@ -10,5 +9,6 @@
   border-radius: 5px;
   box-shadow: inset 1px 1px 4px lightblue;
   font-family: Helvetica;
+  width: 70vw;
 }
 

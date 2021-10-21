@@ -3,6 +3,8 @@ import {Batch, ExecutorEnum, RecurrenceEnum} from './batch';
 import { BatchesService } from './batches.service';
 import { LogstasherService } from '../console/logstasher.service';
 import {RecurrenceSettingComponent} from "./recurrence-setting/recurrence-setting.component";
+import {SortEvent} from "primeng/api";
+import {delay} from "rxjs/operators";
 
 @Component({
   selector: 'app-batches',
@@ -23,6 +25,8 @@ export class BatchesComponent implements OnInit {
 
   @Input() executor: ExecutorEnum;
 
+  working = false;
+
   constructor(
     protected batchesService: BatchesService,
     protected consoleService: LogstasherService
@@ -40,22 +44,39 @@ export class BatchesComponent implements OnInit {
   async ngOnInit() {
     this.displayEdit = false;
     try {
-      this.batches = await this.batchesService.findAll(this.executor);
+      const batches = await this.batchesService.findAll(this.executor);
+      // add timestamp for sorting
+      batches.forEach(e => e['startTime'] = e.startHour*60 + e.startMinute);
+      batches.sort((a,b) => a.id.localeCompare(b.id)); // to avoid es sort issue
+      this.batches = batches;
     } catch (exception) {
       this.errorMsg = 'Unable to join server';
     }
   }
   async save(p: Batch) {
-    await this.batchesService.save(p);
-    setTimeout(e => this.ngOnInit(), 1000);
+    this.working = true;
+    try {
+      await this.batchesService.save(p);
+      await this.ngOnInit()
+    }
+    finally {
+      this.working = false;
+    }
   }
   async delete(p: Batch) {
-    const c = confirm('Are you sure ?');
-    if (!c) {
-      return;
+    this.working = true;
+    try {
+      const c = confirm('Are you sure ?');
+      if (!c) {
+        return;
+      }
+      await this.batchesService.delete(p);
+      await this.ngOnInit()
     }
-    await this.batchesService.delete(p);
-    setTimeout(e => this.ngOnInit(), 1000);
+    finally {
+      this.working = false;
+    }
+
   }
 
   start(p: Batch) {
@@ -73,4 +94,6 @@ export class BatchesComponent implements OnInit {
   pad(v) {
     return ("" + v).padStart(2, "0");
   }
+
+
 }

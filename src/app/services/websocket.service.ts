@@ -24,7 +24,7 @@ import { environment } from 'src/environments/environment';
                 brokerURL: environment.wsUrl + '/logstasher',
                 onConnect: (frame) => {
                     this.client = client;
-                    resolve();
+                    resolve(null);
                 },
                 onWebSocketClose: (e) => {
                     this.client = null;

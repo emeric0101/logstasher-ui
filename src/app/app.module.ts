@@ -37,6 +37,10 @@ import {DropdownModule} from "primeng/dropdown";
 import { RecurrenceSettingComponent } from './batches/recurrence-setting/recurrence-setting.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {ConsoleComponent} from "./console/current-queue/console/console.component";
+import { TimelineComponent } from './batches/timeline/timeline.component';
+import {TimelineModule} from "primeng/timeline";
+import {TooltipModule} from "primeng/tooltip";
+import {SkeletonModule} from "primeng/skeleton";
 
 @NgModule({
     declarations: [
@@ -53,29 +57,33 @@ import {ConsoleComponent} from "./console/current-queue/console/console.componen
         EditRestRequestComponent,
         NewRestRequestComponent,
         RecurrenceSettingComponent,
-        ConsoleComponent
+        ConsoleComponent,
+        TimelineComponent
     ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        InputTextModule,
-        ButtonModule,
-        FileUploadModule,
-        HttpClientModule,
-        TableModule,
-        CheckboxModule,
-        CardModule,
-        TerminalModule,
-        DialogModule,
-        BrowserAnimationsModule,
-        SelectButtonModule,
-        TabViewModule,
-        RippleModule,
-        ProgressSpinnerModule,
-        DropdownModule,
-      InputTextareaModule
+  imports: [
+    BrowserModule,
+    FormsModule,
+    InputTextModule,
+    ButtonModule,
+    FileUploadModule,
+    HttpClientModule,
+    TableModule,
+    CheckboxModule,
+    CardModule,
+    TerminalModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    SelectButtonModule,
+    TabViewModule,
+    RippleModule,
+    ProgressSpinnerModule,
+    DropdownModule,
+    InputTextareaModule,
+    TimelineModule,
+    TooltipModule,
+    SkeletonModule
 
-    ],
+  ],
    providers: [
       HttpService,
       PipelineService,

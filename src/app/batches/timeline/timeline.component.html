@@ -1,0 +1,8 @@
+<p-timeline *ngIf="events" [value]="events"  layout="horizontal">
+  <ng-template pTemplate="content" let-event>
+    <span pTooltip="{{event.startHour}}:{{event.startMinute}}" tooltipPosition="bottom">
+      {{event.id}}
+
+    </span>
+  </ng-template>
+</p-timeline>

@@ -1,7 +1,7 @@
 
 
-<table class="console">
+<div class="console">
   <div *ngFor="let line of lines" >
-    <div [innerHTML]="line | consoleSyntaxe"></div>
+    <div class="console-row" [innerHTML]="line | consoleSyntaxe"></div>
   </div>
-</table>
+</div>

@@ -1,18 +1,23 @@
 <h1 *ngIf="errorMsg" class="error">{{errorMsg}}</h1>
 
+<div *ngIf="batches">
+  <app-timeline *ngIf="!working" [batches]="batches"></app-timeline>
+  <p-skeleton height="99.5px" *ngIf="working"></p-skeleton>
+</div>
+
 <div *ngIf="!errorMsg">
 
   <div class="btn-bar">
     <button pButton icon="pi pi-plus" class="p-button-rounded " [disabled]="errorMsg" (click)="onNewBatch()"></button>
   </div>
     <br />
-    <p-table [value]="batches">
+    <p-table [value]="batches" sortField="id">
         <ng-template pTemplate="header">
             <tr>
-                <th>ID</th>
+              <th pSortableColumn="id">ID<p-sortIcon field="id"></p-sortIcon></th>
                 <th width="90px">Active</th>
-                <th  width="90px">Order</th>
-                <th>Start time (HH:mm)</th>
+              <th pSortableColumn="order" width="90px">Order <p-sortIcon field="order"></p-sortIcon></th>
+              <th pSortableColumn="startTime">Start time (HH:mm) <p-sortIcon field="startTime"></p-sortIcon></th>
                 <th>Timeout</th>
               <th></th>
             </tr>
@@ -21,7 +26,7 @@
             <tr>
                 <td>{{item.id}}</td>
                 <td>
-                    <p-checkbox [(ngModel)]="item.activated" binary="true" (onChange)="save(item)"></p-checkbox>
+                    <p-checkbox [(ngModel)]="item.activated" [disabled]="working" binary="true" (onChange)="save(item)"></p-checkbox>
                 </td>
                 <td>{{item.order}}</td>
                 <td>
@@ -43,7 +48,7 @@
                     </div>
                   </div>
                 </td>
-                <td> <input type="number" min="1" max="600" pInputText [(ngModel)]="item.timeout"
+                <td> <input type="number" min="1" max="600" pInputText [(ngModel)]="item.timeout" [disabled]="working"
                         (ngModelChange)="save(item)" placeholder="timeout"> (min)
                 </td>
                 <td class="btn-bar">
@@ -59,6 +64,7 @@
     </p-table>
 </div>
 
+
 <p-dialog header="New batch" [(visible)]="displayNew">
     <app-batches-create (updated)="ngOnInit(); displayNew = false;"></app-batches-create>
 </p-dialog>
@@ -71,3 +77,4 @@
 <p-dialog header="Edit batch" [(visible)]="displayRestEdit" >
     <app-edit-rest-request *ngIf="editBatch" [batch]="editBatch" (onFinish)="displayRestEdit = false;"></app-edit-rest-request>
 </p-dialog>
+

@@ -19,10 +19,10 @@ export class BatchesService {
         return r.filter(e => e.executor == executor);
       }
       public save(p: Batch) {
-        this.httpService.post(this.modelName, p);
+        return this.httpService.post(this.modelName, p);
       }
       public delete(p: Batch) {
-        this.httpService.delete(this.modelName + '/' + p.id);
+        return this.httpService.delete(this.modelName + '/' + p.id);
       }
 
 
